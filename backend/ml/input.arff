@@ -1,0 +1,36 @@
+@relation prostate_cancer_prediction
+
+@attribute Patient_ID string
+@attribute Age numeric
+@attribute Family_History {Yes,No}
+@attribute Race_African_Ancestry {Yes,No}
+@attribute PSA_Level numeric
+@attribute DRE_Result {Normal,Abnormal}
+@attribute Biopsy_Result {Benign,Malignant}
+@attribute Difficulty_Urinating {Yes,No}
+@attribute Weak_Urine_Flow {Yes,No}
+@attribute Blood_in_Urine {Yes,No}
+@attribute Pelvic_Pain {Yes,No}
+@attribute Back_Pain {Yes,No}
+@attribute Erectile_Dysfunction {Yes,No}
+@attribute Cancer_Stage {Localized,Advanced,Metastatic}
+@attribute Treatment_Recommended {"Active Surveillance","Radiation","Immunotherapy","Chemotherapy","Surgery","Hormone Therapy"}
+@attribute Survival_5_Years {Yes,No}
+@attribute Exercise_Regularly {Yes,No}
+@attribute Healthy_Diet {Yes,No}
+@attribute BMI numeric
+@attribute Smoking_History {Yes,No}
+@attribute Alcohol_Consumption {Low,Moderate,High}
+@attribute Hypertension {Yes,No}
+@attribute Diabetes {Yes,No}
+@attribute Cholesterol_Level {Normal,High}
+@attribute Screening_Age numeric
+@attribute Follow_Up_Required {Yes,No}
+@attribute Prostate_Volume numeric
+@attribute Genetic_Risk_Factors {Yes,No}
+@attribute Previous_Cancer_History {Yes,No}
+@attribute Early_Detection {Yes,No}
+
+@data
+
+"test_positive_001",72,Yes,Yes,15.2,Abnormal,Malignant,Yes,Yes,Yes,Yes,Yes,Yes,Metastatic,"Chemotherapy",No,No,No,32.5,Yes,High,Yes,Yes,High,60,Yes,70,Yes,Yes,No,?

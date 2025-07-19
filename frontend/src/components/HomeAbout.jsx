@@ -11,10 +11,10 @@ const HomeAbout = () => {
   return (
     <div className="my-28 w-full">
       <div className="space-y-5 mb-20 ">
-        <p className="font-bold text-[46px]">
+        <p className="font-bold xl:text-[46px] text-[35px]">
           Dedicated to provide best treatment.
         </p>
-        <p className="text-[18px] font-medium w-[883px]">
+        <p className="text-[18px] font-medium xl:w-[883px] w-full">
           A wonderful serenity has taken possession of my entire soul, like
           these sweet mornings of spring which I enjoy with my whole heart. I am
           alone, and feel the charm of existence in this spot, which was created
@@ -22,7 +22,7 @@ const HomeAbout = () => {
         </p>
       </div>
 
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10 grid-cols-1">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-14 grid-cols-1">
         {health.map((heal, index) => (
           <div className="relative ">
             <div className="overflow-hidden rounded-lg">

@@ -7,11 +7,11 @@ const Footer = () => {
   const {navigate} = useContext(CanContext)
 
   return (
-    <div className='w-full lg:px-40 px-5 py-20 bg-[#18A0A9] flex justify-between'>
+    <div className='w-full lg:px-40 md:px-20 px-5 py-20 bg-[#18A0A9] flex lg:flex-row gap-10 flex-col justify-between'>
       
 
-      <div className='space-y-8'>
-              <div className="flex items-center gap-3">
+      <div className=' flex flex-row gap-8 lg:flex-col'>
+              <div className="flex  items-center gap-3">
                 <img src={assets.icon} alt="" />
                 <p className="font-bold text-white text-[14px]">Medico</p>
               </div>

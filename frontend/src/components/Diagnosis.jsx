@@ -2,12 +2,12 @@ import React from 'react'
 
 const Diagnosis = () => {
   return (
-    <div className='w-full my-28 flex gap-20'>
+    <div className='w-full my-28 flex lg:flex-row flex-col gap-20'>
       
         <div className='flex-[50%] space-y-4'>
             <p className='uppercase text-[12px] font-bold text-[#09A4AD]'>Preemptive Breast Cancer Diagnosis</p>
-            <p className='font-bold text-[40px]'>Get a free preemptive diagnosis by completing the form.</p>
-            <p className='text-[20px] font-medium'>It's quick, secure, and could help identify early risk factors before symptoms appear.
+            <p className='font-bold xl:text-[40px] text-[30px]'>Get a free preemptive diagnosis by completing the form.</p>
+            <p className='xl:text-[20px] text-[17px] font-medium'>It's quick, secure, and could help identify early risk factors before symptoms appear.
 This tool is not a medical test but an early screening aid.</p>
         </div>
 

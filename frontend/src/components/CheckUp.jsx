@@ -14,13 +14,13 @@ const CheckUp = () => {
     <div className="my-28">
       <div className="flex items-center justify-center">
         <div className="text-center space-y-4">
-          <p className="font-bold text-[40px]">Health Checkup Plans</p>
-          <p className="font-medium text-[20px] w-[520px]">
+          <p className="font-bold xl:text-[40px] sm:text-[30px] text-[25px]">Health Checkup Plans</p>
+          <p className="font-medium xl:text-[20px] text-[] xl:w-[520px] w-full">
             They live in Bookmarks grove right at the coast of the Semantics, a
             large language ocean named flows.
           </p>
 
-          <div className="bg-white rounded-lg p-5">
+          <div className="bg-white rounded-lg grid lg:grid-cols-3 sm:grid-cols-2 :grid-cols-1 p-5">
             {tabs.map((tab, index) => (
               <button
                 onClick={() => setActiveIndex(index)}
@@ -38,9 +38,9 @@ const CheckUp = () => {
         </div>
       </div>
 
-      <div className="mt-10">
+      <div className="mt-10 ">
         {activeIndex === 0 && (
-          <div className="flex justify-between items-end">
+          <div className="flex justify-between flex-col-reverse max-lg:gap-10 lg:flex-row lg:items-end">
             <div className="space-y-5">
               <img src={assets.Frame} alt="" />
               <p className="font-bold text-[32px]">Women Health Checkup</p>
@@ -84,7 +84,7 @@ const CheckUp = () => {
         )}
 
         {activeIndex === 1 && (
-          <div className="flex justify-between items-end">
+          <div className="flex justify-between flex-col max-lg:gap-10 lg:flex-row lg:items-end">
             <div className="space-y-5">
               <img src={assets.Frame} alt="" />
               <p className="font-bold text-[32px]">Women Health Checkup</p>
@@ -128,7 +128,7 @@ const CheckUp = () => {
         )}
 
         {activeIndex === 2 && (
-          <div className="flex justify-between items-end">
+          <div className="flex justify-between flex-col max-lg:gap-10 lg:flex-row lg:items-end">
             <div className="space-y-5">
               <img src={assets.Frame} alt="" />
               <p className="font-bold text-[32px]">Women Health Checkup</p>

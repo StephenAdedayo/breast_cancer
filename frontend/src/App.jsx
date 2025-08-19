@@ -6,6 +6,9 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Services from './pages/Services'
 import DiagnosisPage from './pages/DiagnosisPage'
+import { ToastContainer } from 'react-toastify';
+import HealthTips from './pages/HealthTips'
+
 
 const App = () => {
 
@@ -18,6 +21,7 @@ const App = () => {
 
   return (
     <div className='bg-gray-100 min-h-screen'>
+      <ToastContainer />
     <Header />
     <main className='xl:px-40 md:px-20 px-5 min-h-screen'>
       <Navbar />
@@ -25,6 +29,7 @@ const App = () => {
         <Route path='/' element={<Home />}/>
         <Route path='/services' element={<Services />}/>
         <Route path='/diagnose' element={<DiagnosisPage />}/>
+        <Route path='/healthtips' element={<HealthTips />}/>
       </Routes>
       </main>
       <Footer />

@@ -77,14 +77,14 @@ const CheckUp = () => {
               </button>
             </div>
 
-            <div>
+            <div className="lg:mt-0 md:mt-[340px] sm:mt-[350px] mt-[340px]">
               <Image img={assets.image6} />
             </div>
           </div>
         )}
 
         {activeIndex === 1 && (
-          <div className="flex justify-between flex-col max-lg:gap-10 lg:flex-row lg:items-end">
+          <div className="flex justify-between flex-col-reverse max-lg:gap-10 lg:flex-row lg:items-end">
             <div className="space-y-5">
               <img src={assets.Frame} alt="" />
               <p className="font-bold text-[32px]">Women Health Checkup</p>
@@ -121,14 +121,14 @@ const CheckUp = () => {
               </button>
             </div>
 
-            <div>
+            <div className="lg:mt-0 md:mt-[340px] sm:mt-[370px] mt-[340px]">
               <Image img={assets.image6} />
             </div>
           </div>
         )}
 
         {activeIndex === 2 && (
-          <div className="flex justify-between flex-col max-lg:gap-10 lg:flex-row lg:items-end">
+          <div className="flex justify-between flex-col-reverse max-lg:gap-10 lg:flex-row lg:items-end">
             <div className="space-y-5">
               <img src={assets.Frame} alt="" />
               <p className="font-bold text-[32px]">Women Health Checkup</p>
@@ -165,7 +165,7 @@ const CheckUp = () => {
               </button>
             </div>
 
-            <div>
+            <div className="lg:mt-0 md:mt-[340px] sm:mt-[350px] mt-[340px]">
               <Image img={assets.image6} />
             </div>
           </div>

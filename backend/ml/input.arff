@@ -33,4 +33,4 @@
 
 @data
 
-"test_positive_001",72,Yes,Yes,15.2,Abnormal,Malignant,Yes,Yes,Yes,Yes,Yes,Yes,Metastatic,"Chemotherapy",No,No,No,32.5,Yes,High,Yes,Yes,High,60,Yes,70,Yes,Yes,No,?
+"23",45,Yes,Yes,12,Abnormal,Malignant,No,No,No,Yes,Yes,Yes,Localized,"Hormone Therapy",Yes,Yes,No,50,Yes,Moderate,Yes,Yes,Normal,70,No,60,Yes,Yes,Yes,?

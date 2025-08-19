@@ -17,7 +17,7 @@ const Choose = () => {
 
   return (
     <div className="w-full mt-28 ">
-      <div className="flex justify-between flex-col max-lg:gap-10 lg:flex-row lg:items-end">
+      <div className="flex justify-between flex-col max-lg:gap-10 lg:flex-row lg:items-end lg:mt-0 mt-[300px]">
         <div className="flex">
           <Image img={assets.image5} />
         </div>

@@ -1,27 +1,33 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { assets } from "../assets/assets";
+import { CanContext } from "../context/CanContext";
+import Modal from "./Modal";
 
 const HomeServices = () => {
   const services = [
     {
+      id: 1,
       title: "Mental Health Service",
       img: assets.drop,
       details:
         "The service provides immediate medical care to patients with acute illnesses or injuries that require immediate attention",
     },
     {
+       id: 2,
       title: "Eye Diseasses Service",
       img: assets.round,
       details:
         "The service provides immediate medical care to patients with acute illnesses or injuries that require immediate attention",
     },
     {
+      id: 3,
       title: "Vaccination Service",
       img: assets.drop,
       details:
         "The service provides immediate medical care to patients with acute illnesses or injuries that require immediate attention",
     },
     {
+      id: 4,
       title: "Cardiology Service",
       img: assets.love,
       details:
@@ -29,7 +35,17 @@ const HomeServices = () => {
     },
   ];
 
+
+   const {setIsModalOpen} = useContext(CanContext)
+  const [activeIndex, setActiveIndex] = useState(null)
+
+  const handleModal = (id) => {
+    setIsModalOpen(true)
+    setActiveIndex(id)
+  }
+
   return (
+    <>
     <div className="my-28">
       <div className="flex flex-col gap-5  lg:flex-row justify-between lg:items-center mb-10">
         <div className="space-y-3">
@@ -52,6 +68,7 @@ const HomeServices = () => {
         {services.map((service, index) => (
           <div
             key={index}
+            onClick={() => handleModal(service.id)}
             className="bg-white relative w-full rounded-lg p-8 flex gap-5"
           >
             <img className="size-[40px]" src={service.img} alt="" />
@@ -67,6 +84,8 @@ const HomeServices = () => {
         ))}
       </div>
     </div>
+    <Modal activeIndex={activeIndex} setActiveIndex={setActiveIndex} data={services}/>
+    </>
   );
 };
 

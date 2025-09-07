@@ -5,12 +5,12 @@ import { CanContext } from "../context/CanContext";
 
 const Choose = () => {
   const why = [
-    "Safety First Quality Must",
-    "Patient-Centric Approach",
-    "Focused Leadership",
-    "Cutting-Edge Technology",
-    "Transparent Pricing",
-    "Coordinated Care",
+     "Accurate ML-Based Predictions",
+  "Simple and User-Friendly",
+  "Focus on Early Detection",
+  "Accessible Anytime, Anywhere",
+  "Guidance and Support Resources",
+  "Completely Free to Use",
   ];
 
   const {navigate} = useContext(CanContext)
@@ -37,14 +37,16 @@ const Choose = () => {
       </div>
 
       <div className="mt-10 space-y-5">
-        <h1 className="font-bold lg:text-[40px] sm:text-[30px] text-[20px]">Wellness, Compassion, Quality</h1>
-        <p className="font-medium xl:text-[20px] text-[16px] xl:w-[700px] md:w-[500px] w-full">
-          They live in Bookmarks grove right at the coast of the Semantics, a
-          large language ocean. A small river named Duden flows by their place
-          and supplies it.
+        <h1 className="font-bold lg:text-[35px] sm:text-[30px] text-[20px]">  Empowering You with Technology <br /> and Care
+</h1>
+        <p className="font-medium xl:text-[20px] text-[16px] xl:w-[600px] md:w-[500px] w-full">
+           Our platform combines advanced machine learning with a compassionate, 
+  patient-centered approach. By answering a short health questionnaire, 
+  you can instantly know if your risk is Negative or Positive — helping you 
+  take control of your health early, and it’s completely free.
         </p>
         <button onClick={() => navigate("/diagnose")} className="font-medium text-white bg-[#00A0AA] px-6 py-3 rounded-lg">
-          Diagnose yourself
+  Get Your Result
         </button>
       </div>
     </div>

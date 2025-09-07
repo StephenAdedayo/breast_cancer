@@ -15,8 +15,9 @@ const TipsBanner = () => {
         </p>
 
         <p className="text-[#102D47] max-w-[500px] lg:text-[20px] text-[17px]">
-We offer intelligent, accessible tools  to help users detect
-          prostate cancer risks early  and make informed health decisions.
+  Get practical health tips and expert insights to help you understand, 
+  prevent, and manage breast and prostate cancer risks with confidence.
+
         </p>
 
         <div className="flex items-center justify-center gap-1">

@@ -4,7 +4,7 @@ import Image from "./Image";
 import { CanContext } from "../context/CanContext";
 
 const CheckUp = () => {
-  const tabs = ["women health", "Cancer screening", "Kids Vaccines"];
+  const tabs = ["Breast Cancer", "Prostate Cancer"];
 
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -20,7 +20,7 @@ const CheckUp = () => {
             large language ocean named flows.
           </p>
 
-          <div className="bg-white rounded-lg grid lg:grid-cols-3 sm:grid-cols-2 :grid-cols-1 p-5">
+          <div className="bg-white rounded-lg grid  sm:grid-cols-2 :grid-cols-1 p-5">
             {tabs.map((tab, index) => (
               <button
                 onClick={() => setActiveIndex(index)}
@@ -43,37 +43,37 @@ const CheckUp = () => {
           <div className="flex justify-between flex-col-reverse max-lg:gap-10 lg:flex-row lg:items-end">
             <div className="space-y-5">
               <img src={assets.Frame} alt="" />
-              <p className="font-bold text-[32px]">Women Health Checkup</p>
-              <p className="font-medium text-[18px]">
-                A wonderful serenity has taken possession of my entire soul,
-                like these sweet mornings of spring.
+              <p className="font-bold text-[32px]">Breast Cancer Risk Prediction</p>
+              <p className="font-medium w-full lg:w-[550px] md:w-[600px] text-[18px]">
+ Answer a few simple questions about your health and lifestyle. 
+        Our machine learning model will predict whether your result is Negative or Positive, helping you take early action.
               </p>
 
               <div className="space-y-3">
                 <div className="flex gap-3 items-center">
                   <img src={assets.group1} alt="" />
                   <p className="font-medium text-[18px]">
-                    Complete Blood Count with ESR
+      Answer a short health and lifestyle questionnaire
                   </p>
                 </div>
 
                 <div className="flex gap-3 items-center">
                   <img src={assets.group1} alt="" />
                   <p className="font-medium text-[18px]">
-                    Lipid Profile, Live Profile, kidney Profile{" "}
+      Our ML model analyzes your responses for potential risk factors
                   </p>
                 </div>
 
                 <div className="flex gap-3 items-center">
                   <img src={assets.group1} alt="" />
                   <p className="font-medium text-[18px]">
-                    USG Abdomen with Pelvis, Mammography
+      Access guidance and resources based on your result
                   </p>
                 </div>
               </div>
 
               <button className="bg-[#00A0AA] px-6 py-3 rounded-lg text-white ">
-                Diagnose yourself
+        Get Your Result
               </button>
             </div>
 
@@ -87,37 +87,37 @@ const CheckUp = () => {
           <div className="flex justify-between flex-col-reverse max-lg:gap-10 lg:flex-row lg:items-end">
             <div className="space-y-5">
               <img src={assets.Frame} alt="" />
-              <p className="font-bold text-[32px]">Women Health Checkup</p>
-              <p className="font-medium text-[18px]">
-                A wonderful serenity has taken possession of my entire soul,
-                like these sweet mornings of spring.
+              <p className="font-bold text-[32px]">Prostate Cancer Risk Prediction</p>
+              <p className="font-medium w-full lg:w-[550px] md:w-[600px] text-[18px]">
+        Answer a few simple health questions. Our ML model predicts whether your result is Negative or Positive, providing guidance for early awareness and next steps.
+
               </p>
 
               <div className="space-y-3">
                 <div className="flex gap-3 items-center">
                   <img src={assets.group1} alt="" />
                   <p className="font-medium text-[18px]">
-                    Complete Blood Count with ESR
+      Our ML model analyzes your responses for potential risk factors
                   </p>
                 </div>
 
                 <div className="flex gap-3 items-center">
                   <img src={assets.group1} alt="" />
                   <p className="font-medium text-[18px]">
-                    Lipid Profile, Live Profile, kidney Profile{" "}
+      Access guidance and resources based on your result
                   </p>
                 </div>
 
                 <div className="flex gap-3 items-center">
                   <img src={assets.group1} alt="" />
                   <p className="font-medium text-[18px]">
-                    USG Abdomen with Pelvis, Mammography
+      Receive an instant prediction: Negative or Positive
                   </p>
                 </div>
               </div>
 
               <button className="bg-[#00A0AA] px-6 py-3 rounded-lg text-white ">
-                Diagnose yourself
+        Get Your Result
               </button>
             </div>
 

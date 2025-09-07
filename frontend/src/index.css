@@ -5,3 +5,7 @@
 *{
   font-family: "Plus Jakarta Sans", sans-serif;
 }
+
+.hide::-webkit-scrollbar{
+ display: none;
+}

@@ -3,26 +3,27 @@ import { assets } from "../assets/assets";
 
 const HomeAbout = () => {
   const health = [
-    { img: assets.image2, note: "Pediatrician" },
-    { img: assets.image3, note: "Cardiologist" },
-    { img: assets.image4, note: "Dermatologist" },
+    { img: assets.image2, note: "Awareness & Education" },
+    { img: assets.image3, note: "Early Diagnosis Support" },
+    { img: assets.image4, note: "Care & Resources" },
   ];
 
   return (
     <div className="my-28 w-full">
       <div className="space-y-5 mb-20 ">
-        <p className="font-bold xl:text-[46px] text-[35px]">
-          Dedicated to provide best treatment.
+        <p className="font-bold xl:text-[40px] text-[35px]">
+    Dedicated to Saving Lives <br /> Through  Early Detection
         </p>
-        <p className="text-[18px] font-medium xl:w-[883px] w-full">
-          A wonderful serenity has taken possession of my entire soul, like
-          these sweet mornings of spring which I enjoy with my whole heart. I am
-          alone, and feel the charm of existence in this spot, which was created
-          for the bliss of souls like mine.
+        <p className="text-[18px] font-medium xl:w-[800px] lg:w-[800px] w-full">
+         Our mission is simple: to raise awareness and make early diagnosis of 
+    <span className="font-semibold"> Breast Cancer </span> and 
+    <span className="font-semibold"> Prostate Cancer </span> accessible to everyone.  
+    By combining education, risk assessment, and technology-driven tools, 
+    we empower you to take control of your health and act early.
         </p>
       </div>
 
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-14 grid-cols-1">
+      <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-14 grid-cols-1">
         {health.map((heal, index) => (
           <div className="relative ">
             <div className="overflow-hidden rounded-lg">

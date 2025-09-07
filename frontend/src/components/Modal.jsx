@@ -37,7 +37,7 @@ const Modal = ({ activeIndex, setActiveIndex, data }) => {
           initial= 'hidden'
           animate= 'presence'
             onClick={() => setIsModalOpen(false)}
-            className="w-full px-5 lg:px-40 grid place-items-center h-full z-20 fixed  backdrop-blur-3xl  bg-transparent  top-0 right-0 left-0 bottom-0"
+            className="w-full px-5  lg:px-40  grid place-items-center z-20 fixed  backdrop-blur-3xl  bg-transparent  top-0 right-0 left-0 bottom-0"
           >
             <motion.div
             variants={variant}
@@ -45,9 +45,9 @@ const Modal = ({ activeIndex, setActiveIndex, data }) => {
             animate = 'presence'
             exit={{opacity:0}}
               onClick={(e) => e.stopPropagation()}
-              className="bg-[#00A0AA]  text-white rounded-lg max-w-[500px] w-full p-5"
+              className="bg-[#00A0AA] hide text-white rounded-lg overflow-y-scroll h-[500px] max-w-[500px] w-full p-5"
             >
-              <p className="lg:text-[25px] text-base">
+              <p className="lg:text-[20px] text-base">
                 {modalData?.details || "loading...."}
               </p>
             </motion.div>

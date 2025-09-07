@@ -18,14 +18,14 @@ const Hero = () => {
 
       <div className="space-y-5  flex-[50%]">
         <p className="text-[#00A0AA] font-bold text-[20px]">
-          Welcome to Medico Healthcare
+         Early Detection Saves Lives
         </p>
-        <p className="font-bold xl:text-[70px] md:text-[30px] text-[30px]">
-          Your Journey to Better Health Starts Here
+        <p className="font-bold xl:text-[55px] lg:text-[49px] md:text-[30px] text-[30px]">
+       Empowering You Against Breast & Prostate Cancer
         </p>
 
         <button onClick={() => navigate("/diagnose")} className="font-[bold] bg-[#00A0AA] px-6 py-3 rounded text-white">
-          Diagnose Yourself
+         Start Diagnosis
         </button>
       </div>
     </div>

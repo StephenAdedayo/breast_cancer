@@ -1,7 +1,8 @@
-import { exec } from 'child_process';
-import path from 'path';
-import { generateArff } from '../ml/generateARFF.js'; // adjust path if needed
-import { fileURLToPath } from 'url';
+import { exec } from "child_process";
+import path from "path";
+import fs from "fs";
+import { fileURLToPath } from "url";
+import { generateArff } from "../ml/generateARFF.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -11,33 +12,53 @@ export const predictProstateCancer = async (req, res) => {
   try {
     const inputData = req.body;
 
-    // 1. Generate ARFF file
-    generateArff(inputData);  // creates ml/input.arff
+    // 1. Generate a unique ARFF file for this request
+    const inputArffPath = generateArff(inputData);
 
-    // 2. Set paths for model and arff file
-    const modelPath = path.join(__dirname, '../ml/svm.model');
-    const inputArffPath = path.join(__dirname, '../ml/input.arff');
-    const wekaJarPath = path.join(__dirname, '../ml/weka.jar');
+    // 2. Define paths
+    const modelPath = path.join(__dirname, "../ml/prostate_cancer.model");
+    const wekaJarPath = path.join(__dirname, "../ml/weka.jar");
 
     // 3. Build the Java command
-    const command = `java -cp "${path.dirname(modelPath)}${process.platform === 'win32' ? ';' : ':'}${wekaJarPath}" WekaPredictor ${modelPath} ${inputArffPath}`;
+    const command = `java -cp "${path.dirname(modelPath)}${
+      process.platform === "win32" ? ";" : ":"
+    }${wekaJarPath}" WekaPredictor "${modelPath}" "${inputArffPath}"`;
 
-    // 4. Run the prediction
+    // 4. Run prediction
     exec(command, (error, stdout, stderr) => {
+      // Delete temp file after prediction attempt
+      fs.unlink(inputArffPath, () => {});
+
       if (error) {
-        console.error('Error executing Java Weka:', stderr);
-        return res.status(500).json({ success: false, error: 'Prediction failed. Check Java or model files.' });
+        console.error("Error executing Java Weka:", stderr);
+        return res.status(500).json({
+          success: false,
+          error: "Prediction failed. Check Java or model files.",
+        });
       }
 
-      console.log(stdout);
-      
+      console.log("Raw Weka Output:", stdout);
 
-      const result = stdout.trim() === 'Yes' ? "positive" : "negative"; // e.g. "yes" or "no"
-      
+      // Normalize prediction result
+      const output = stdout.trim().toLowerCase();
+      let result;
+
+      if (output.includes("positive")) {
+        result = "Positive";
+      } else if (output.includes("negative")) {
+        result = "Negative";
+      } else {
+        result = "unknown";
+      }
+
       res.json({ success: true, prediction: result });
     });
   } catch (err) {
-    console.error('Server error:', err.message);
-    res.status(500).json({ success: false, error: 'Server error occurred' });
+    console.error("Server error:", err.message);
+    res
+      .status(500)
+      .json({ success: false, error: "Server error occurred" });
   }
 };
+
+

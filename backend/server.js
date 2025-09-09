@@ -6,6 +6,7 @@ import predictRouter from './routes/predictRoutes.js'
 import cors from 'cors'
 import tipsRouter from './routes/tipsRoutes.js'
 import connectCloudinary from './config/cloudinary.js'
+import predictBreastRouter from './routes/predictBreastRoutes.js'
 
 const app = express()
 connectDB()
@@ -18,6 +19,7 @@ app.use(express.json())
 app.use(cors())
 app.use("/api/auth", authRouter)
 app.use("/api/model", predictRouter)
+app.use("/api/model", predictBreastRouter)
 app.use("/api/tips", tipsRouter)
 
 

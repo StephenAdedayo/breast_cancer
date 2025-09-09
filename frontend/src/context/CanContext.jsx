@@ -11,7 +11,7 @@ const CanContextProvider = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(true)
     const [isModalOpen, setIsModalOpen] = useState(false);
    const location = useLocation()
-  const backendUrl = 'http://localhost:5000'
+  const backendUrl = 'http://localhost:5050'
   const [allTips, setAllTips] = useState([]);
   const [tipsModal, setTipsModal] = useState(false);
 

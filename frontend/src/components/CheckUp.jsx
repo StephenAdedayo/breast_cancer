@@ -20,7 +20,7 @@ const CheckUp = () => {
             large language ocean named flows.
           </p>
 
-          <div className="bg-white rounded-lg grid  sm:grid-cols-2 :grid-cols-1 p-5">
+          <div className="bg-white rounded-lg grid  sm:grid-cols-2 grid-cols-1 p-5">
             {tabs.map((tab, index) => (
               <button
                 onClick={() => setActiveIndex(index)}

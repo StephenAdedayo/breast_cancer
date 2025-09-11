@@ -1,12 +1,21 @@
-// utils/generateArffBreast.js
 import fs from "fs";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export function generateBreastArff(data) {
-  const tempFile = path.join("uploads", `${uuidv4()}.arff`);
+  try {
+    const uploadsDir = path.join(__dirname, "uploads");
 
-  const header = `
+    // Ensure uploads folder exists
+    fs.mkdirSync(uploadsDir, { recursive: true });
+
+    const tempFile = path.join(uploadsDir, `${uuidv4()}.arff`);
+
+    const header = `
 @relation breast_cancer_prediction
 
 @attribute Age numeric
@@ -43,39 +52,44 @@ export function generateBreastArff(data) {
 @data
 `;
 
-  const row = [
-    data.Age,
-    data.BMI,
-    data.Family_History_BC,
-    data.BRCA_Mutation,
-    data.Age_Menarche,
-    data.Age_Menopause,
-    data.Parity,
-    data.Age_First_Child,
-    data.Breastfeeding_History,
-    data.Hormone_Replacement_Therapy,
-    data.Oral_Contraceptive_Use,
-    data.Radiation_Exposure,
-    data.Smoking,
-    data.Alcohol_Intake,
-    data.Physical_Activity,
-    data.Diet_Quality,
-    data.Breast_Pain,
-    data.Lump_Presence,
-    data.Nipple_Discharge,
-    data.Skin_Dimpling,
-    data.Mammogram_Result,
-    data.Ultrasound_Result,
-    data.Biopsy_Result,
-    data.Breast_Density,
-    data.Menstrual_Irregularities,
-    data.Obesity,
-    data.Diabetes,
-    data.Hypertension,
-    data.Cholesterol,
-    "?" // class label to predict
-  ].join(",");
+    const row = [
+      data.Age,
+      data.BMI,
+      data.Family_History_BC,
+      data.BRCA_Mutation,
+      data.Age_Menarche,
+      data.Age_Menopause,
+      data.Parity,
+      data.Age_First_Child,
+      data.Breastfeeding_History,
+      data.Hormone_Replacement_Therapy,
+      data.Oral_Contraceptive_Use,
+      data.Radiation_Exposure,
+      data.Smoking,
+      data.Alcohol_Intake,
+      data.Physical_Activity,
+      data.Diet_Quality,
+      data.Breast_Pain,
+      data.Lump_Presence,
+      data.Nipple_Discharge,
+      data.Skin_Dimpling,
+      data.Mammogram_Result,
+      data.Ultrasound_Result,
+      data.Biopsy_Result,
+      data.Breast_Density,
+      data.Menstrual_Irregularities,
+      data.Obesity,
+      data.Diabetes,
+      data.Hypertension,
+      data.Cholesterol,
+      "?"
+    ].join(",");
 
-  fs.writeFileSync(tempFile, header + row);
-  return tempFile;
+    fs.writeFileSync(tempFile, header + row);
+    // console.log("ARFF file created at:", tempFile);
+    return tempFile;
+  } catch (err) {
+    console.error("Failed to generate ARFF file:", err);
+    throw err;
+  }
 }

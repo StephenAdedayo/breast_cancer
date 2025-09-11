@@ -1,12 +1,23 @@
-
-
 // utils/generateArff.js
 import fs from "fs";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
+import { fileURLToPath } from "url";
+
+// Get __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export function generateArff(data) {
-  const tempFile = path.join("uploads", `${uuidv4()}.arff`);
+  // Folder inside the same folder as this file
+  const uploadsDir = path.join(__dirname, "uploads");
+
+  // Create folder if it doesn't exist
+  if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+  }
+
+  const tempFile = path.join(uploadsDir, `${uuidv4()}.arff`);
 
   const header = `
 @relation prostate_cancer_prediction
@@ -45,7 +56,7 @@ export function generateArff(data) {
 @data
 `;
 
-  const quote = (val) => (val.includes(" ") ? `'${val}'` : val);
+  const quote = (val) => (val && val.includes(" ") ? `'${val}'` : val);
 
   const row = [
     `"${data.Patient_ID}"`,
@@ -59,7 +70,7 @@ export function generateArff(data) {
     data.Diabetes,
     data.Hypertension,
     data.Stage,
-    quote(data.Treatment), // special handling for spaces
+    quote(data.Treatment),
     data.PSA_Level,
     data.Gleason_Score,
     data.Bone_Pain,
@@ -77,7 +88,7 @@ export function generateArff(data) {
     data.Sleep_Disorder,
     data.Immune_Status,
     data.Genetic_Mutation,
-    "?" // class label to predict
+    "?" // class label
   ].join(",");
 
   fs.writeFileSync(tempFile, header + row);

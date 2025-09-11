@@ -13,7 +13,7 @@ connectDB()
 connectCloudinary()
 
 
-const port = process.env.PORT
+const port = process.env.PORT || 5050
 
 app.use(express.json())
 app.use(cors())

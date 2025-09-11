@@ -7,50 +7,34 @@ import { generateArff } from "../ml/generateARFF.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// POST /api/predict
+// Absolute path to Java inside Docker
+const JAVA_PATH = "/usr/lib/jvm/java-11-openjdk-amd64/bin/java";
+
 export const predictProstateCancer = async (req, res) => {
   try {
     const inputData = req.body;
 
-    // 1. Generate a unique ARFF file for this request
     const inputArffPath = generateArff(inputData);
-
-    // 2. Define paths
     const modelPath = path.join(__dirname, "../ml/prostate_cancer.model");
     const wekaJarPath = path.join(__dirname, "../ml/weka.jar");
 
-    // 3. Explicit path to Java inside Docker
-    const javaPath = "/usr/bin/java";
+    const command = `${JAVA_PATH} -cp "${path.dirname(modelPath)}:${wekaJarPath}" WekaPredictor "${modelPath}" "${inputArffPath}"`;
 
-    // 4. Build the Java command
-    const command = `${javaPath} -cp "${path.dirname(modelPath)}:${wekaJarPath}" WekaPredictor "${modelPath}" "${inputArffPath}"`;
-
-    // 5. Run prediction
     exec(command, (error, stdout, stderr) => {
-      // Delete temp file after prediction attempt
       fs.unlink(inputArffPath, () => {});
 
       if (error) {
-        console.error("Error executing Java Weka:", stderr || error.message);
+        console.error("Error executing Java Weka:", stderr);
         return res.status(500).json({
           success: false,
           error: "Prediction failed. Check Java or model files.",
         });
       }
 
-      console.log("Raw Weka Output:", stdout);
-
-      // Normalize prediction result
       const output = stdout.trim().toLowerCase();
-      let result;
-
-      if (output.includes("positive")) {
-        result = "Positive";
-      } else if (output.includes("negative")) {
-        result = "Negative";
-      } else {
-        result = "unknown";
-      }
+      let result = "unknown";
+      if (output.includes("positive")) result = "Positive";
+      else if (output.includes("negative")) result = "Negative";
 
       res.json({ success: true, prediction: result });
     });

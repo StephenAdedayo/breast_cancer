@@ -11,7 +11,7 @@ const CanContextProvider = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(true)
     const [isModalOpen, setIsModalOpen] = useState(false);
    const location = useLocation()
-  const backendUrl = 'http://localhost:5050'
+  const backendUrl = import.meta.VITE_BACKEND_URL
   const [allTips, setAllTips] = useState([]);
   const [tipsModal, setTipsModal] = useState(false);
 

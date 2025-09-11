@@ -7,34 +7,40 @@ import { generateArff } from "../ml/generateARFF.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Absolute path to Java inside Docker
-const JAVA_PATH = "/usr/lib/jvm/java-11-openjdk-amd64/bin/java";
-
 export const predictProstateCancer = async (req, res) => {
   try {
     const inputData = req.body;
 
+    // Generate a unique ARFF file
     const inputArffPath = generateArff(inputData);
+
+    // Paths
     const modelPath = path.join(__dirname, "../ml/prostate_cancer.model");
     const wekaJarPath = path.join(__dirname, "../ml/weka.jar");
 
-    const command = `${JAVA_PATH} -cp "${path.dirname(modelPath)}:${wekaJarPath}" WekaPredictor "${modelPath}" "${inputArffPath}"`;
+    // Java command (just use `java` because it's on PATH in Docker)
+    const command = `java -cp "${path.dirname(modelPath)}:${wekaJarPath}" WekaPredictor "${modelPath}" "${inputArffPath}"`;
 
     exec(command, (error, stdout, stderr) => {
+      // Delete ARFF after prediction
       fs.unlink(inputArffPath, () => {});
 
       if (error) {
-        console.error("Error executing Java Weka:", stderr);
+        console.error("Error executing Java Weka:", stderr || error.message);
         return res.status(500).json({
           success: false,
           error: "Prediction failed. Check Java or model files.",
         });
       }
 
+      console.log("Raw Weka Output:", stdout);
+
+      // Normalize result
       const output = stdout.trim().toLowerCase();
-      let result = "unknown";
+      let result;
       if (output.includes("positive")) result = "Positive";
       else if (output.includes("negative")) result = "Negative";
+      else result = "unknown";
 
       res.json({ success: true, prediction: result });
     });

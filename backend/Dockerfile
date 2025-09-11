@@ -1,15 +1,14 @@
 # Use official Node image with Debian base
 FROM node:20
 
-# Install Java JDK for Weka
+# Install Java JDK
 RUN apt-get update && \
-    apt-get install -y default-jdk && \
+    apt-get install -y openjdk-20-jdk-headless && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Set JAVA_HOME and add to PATH
-ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
-ENV PATH="$JAVA_HOME/bin:$PATH"
+# Verify Java path
+RUN java -version
 
 # Set working directory to backend
 WORKDIR /usr/src/app/backend
@@ -20,7 +19,7 @@ COPY backend/package*.json ./
 # Install Node dependencies
 RUN npm install
 
-# Copy all backend files
+# Copy backend files
 COPY backend/ ./
 
 # Compile Java predictors
@@ -30,5 +29,5 @@ RUN javac br/WekaPredictor.java -d br/
 # Expose port
 EXPOSE 5050
 
-# Start the Node server
+# Start server
 CMD ["node", "server.js"]

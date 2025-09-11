@@ -2,26 +2,26 @@
 FROM node:20
 
 # Install Java JDK for Weka
-RUN apt-get update && apt-get install -y default-jdk && apt-get clean
+RUN apt-get update && apt-get install -y default-jdk && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Set working directory to backend
-WORKDIR /usr/src/app/backend
+# Set working directory
+WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json
-COPY backend/package*.json ./
+COPY backend/package*.json ./backend/
 
 # Install Node dependencies
-RUN npm install
+RUN npm install --prefix backend
 
 # Copy all backend files
-COPY backend/ ./
+COPY backend/ ./backend/
 
 # Compile Java predictors
-RUN javac ml/WekaPredictor.java -d ml/
-RUN javac br/WekaPredictor.java -d br/
+RUN javac backend/ml/WekaPredictor.java -d backend/ml/
+RUN javac backend/br/WekaPredictor.java -d backend/br/
 
 # Expose the port your Node server uses
 EXPOSE 5050
 
 # Start the Node server
-CMD ["node", "server.js"]
+CMD ["node", "backend/server.js"]

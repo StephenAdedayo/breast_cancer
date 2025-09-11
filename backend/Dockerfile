@@ -17,7 +17,7 @@ RUN npm install
 COPY . .
 
 # Expose port your Node server uses
-EXPOSE 8000
+EXPOSE 5050
 
 # Compile both Java predictors
 RUN javac ml/WekaPredictor.java -d ml/

@@ -19,18 +19,19 @@ export const predictProstateCancer = async (req, res) => {
     const modelPath = path.join(__dirname, "../ml/prostate_cancer.model");
     const wekaJarPath = path.join(__dirname, "../ml/weka.jar");
 
-    // 3. Build the Java command
-    const command = `java -cp "${path.dirname(modelPath)}${
-      process.platform === "win32" ? ";" : ":"
-    }${wekaJarPath}" WekaPredictor "${modelPath}" "${inputArffPath}"`;
+    // 3. Explicit path to Java inside Docker
+    const javaPath = "/usr/bin/java";
 
-    // 4. Run prediction
+    // 4. Build the Java command
+    const command = `${javaPath} -cp "${path.dirname(modelPath)}:${wekaJarPath}" WekaPredictor "${modelPath}" "${inputArffPath}"`;
+
+    // 5. Run prediction
     exec(command, (error, stdout, stderr) => {
       // Delete temp file after prediction attempt
       fs.unlink(inputArffPath, () => {});
 
       if (error) {
-        console.error("Error executing Java Weka:", stderr);
+        console.error("Error executing Java Weka:", stderr || error.message);
         return res.status(500).json({
           success: false,
           error: "Prediction failed. Check Java or model files.",
@@ -55,10 +56,6 @@ export const predictProstateCancer = async (req, res) => {
     });
   } catch (err) {
     console.error("Server error:", err.message);
-    res
-      .status(500)
-      .json({ success: false, error: "Server error occurred" });
+    res.status(500).json({ success: false, error: "Server error occurred" });
   }
 };
-
-

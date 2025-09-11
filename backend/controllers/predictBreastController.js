@@ -4,7 +4,6 @@ import fs from "fs";
 import { fileURLToPath } from "url";
 import { generateBreastArff } from "../br/generateBreastARFF.js";
 
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -17,13 +16,12 @@ export const predictBreastCancer = async (req, res) => {
     const inputArffPath = generateBreastArff(inputData);
 
     // 2. Define paths
-    const modelPath = path.join(__dirname, "../br/breast_cancer.model");
-    const wekaJarPath = path.join(__dirname, "../br/weka.jar");
+    const modelPath = path.resolve(__dirname, "../br/breast_cancer.model");
+    const wekaJarPath = path.resolve(__dirname, "../br/weka.jar");
+    const javaPath = "/usr/bin/java"; // absolute path to java in container
 
     // 3. Build the Java command
-    const command = `java -cp "${path.dirname(modelPath)}${
-      process.platform === "win32" ? ";" : ":"
-    }${wekaJarPath}" WekaPredictor "${modelPath}" "${inputArffPath}"`;
+    const command = `${javaPath} -cp "${path.dirname(modelPath)}:${wekaJarPath}" WekaPredictor "${modelPath}" "${inputArffPath}"`;
 
     // 4. Run prediction
     exec(command, (error, stdout, stderr) => {
@@ -31,7 +29,7 @@ export const predictBreastCancer = async (req, res) => {
       fs.unlink(inputArffPath, () => {});
 
       if (error) {
-        console.error("Error executing Java Weka:", stderr);
+        console.error("Error executing Java Weka:", stderr || error);
         return res.status(500).json({
           success: false,
           error: "Prediction failed. Check Java or model files.",
@@ -56,8 +54,6 @@ export const predictBreastCancer = async (req, res) => {
     });
   } catch (err) {
     console.error("Server error:", err.message);
-    res
-      .status(500)
-      .json({ success: false, error: "Server error occurred" });
+    res.status(500).json({ success: false, error: "Server error occurred" });
   }
 };

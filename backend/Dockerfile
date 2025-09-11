@@ -8,20 +8,23 @@ RUN apt-get update && apt-get install -y default-jdk && apt-get clean
 WORKDIR /usr/src/app
 
 # Copy package files
-COPY package*.json ./
+COPY backend/package*.json ./backend/
 
 # Install Node dependencies
-RUN npm install
+RUN npm install --prefix backend
 
 # Copy all backend files
-COPY . .
+COPY backend/ ./backend/
+
+# Copy frontend if needed (optional)
+COPY frontend/ ./frontend/
 
 # Expose port your Node server uses
 EXPOSE 5050
 
 # Compile both Java predictors
-RUN javac ml/WekaPredictor.java -d ml/
-RUN javac br/WekaPredictor.java -d br/
+RUN javac backend/ml/WekaPredictor.java -d backend/ml/
+RUN javac backend/br/WekaPredictor.java -d backend/br/
 
 # Start the Node server
-CMD ["node", "server.js"]
+CMD ["node", "backend/server.js"]

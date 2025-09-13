@@ -1,9 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, {useState, useContext } from "react";
 import { assets } from "../assets/assets";
 import { CanContext } from "../context/CanContext";
-import Modal from "./Modal";
+
 
 const HomeServices = () => {
+
   const services = [
   {
     id: 1,
@@ -36,14 +37,9 @@ const HomeServices = () => {
 ];
 
 
+const {navigate} = useContext(CanContext)
 
-   const {setIsModalOpen} = useContext(CanContext)
-  const [activeIndex, setActiveIndex] = useState(null)
 
-  const handleModal = (id) => {
-    setIsModalOpen(true)
-    setActiveIndex(id)
-  }
 
   return (
     <>
@@ -59,7 +55,7 @@ const HomeServices = () => {
         </div>
 
         <div className="">
-          <button className="xl:px-6 px-4 py-2  bg-[#00A0AA] text-white  items-end rounded-md">
+          <button onClick={() => navigate("/services")} className="xl:px-6 px-4 py-2  bg-[#00A0AA] text-white  items-end rounded-md">
             See All Services
           </button>
         </div>
@@ -69,7 +65,6 @@ const HomeServices = () => {
         {services.map((service, index) => (
           <div
             key={index}
-            onClick={() => handleModal(service.id)}
             className="bg-white relative w-full rounded-lg p-8 flex  gap-5"
           >
             <img className="size-[25px]" src={service.img} alt="" />
@@ -78,14 +73,11 @@ const HomeServices = () => {
               <p className="text-[14px] font-medium">{service.details.split(" ").slice(0, 20).join(" ")}{"..."}</p>
             </div>
 
-            <div className="bg-[#D9D9D9] absolute bottom-0 right-0 py-1 px-4 rounded-br-lg">
-              <img className="w-[20px]" src={assets.arrow} alt="" />
-            </div>
+           
           </div>
         ))}
       </div>
     </div>
-    <Modal activeIndex={activeIndex} setActiveIndex={setActiveIndex} data={services}/>
     </>
   );
 };

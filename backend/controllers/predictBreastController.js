@@ -18,8 +18,11 @@ export const predictBreastCancer = async (req, res) => {
     const modelPath = path.join(__dirname, "../br/breast_cancer.model");
     const wekaJarPath = path.join(__dirname, "../br/weka.jar");
 
-    // Java command (use PATH)
-    const command = `java -cp "${path.dirname(modelPath)}:${wekaJarPath}" WekaPredictor "${modelPath}" "${inputArffPath}"`;
+    // Detect platform for correct classpath separator
+    const sep = process.platform === "win32" ? ";" : ":";
+
+    // Java command
+    const command = `java -cp ".${sep}${path.dirname(modelPath)}${sep}${wekaJarPath}" br.WekaPredictor "${modelPath}" "${inputArffPath}"`;
 
     exec(command, (error, stdout, stderr) => {
       // Delete ARFF

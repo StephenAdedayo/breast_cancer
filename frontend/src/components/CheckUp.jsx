@@ -72,7 +72,7 @@ const CheckUp = () => {
                 </div>
               </div>
 
-              <button className="bg-[#00A0AA] px-6 py-3 rounded-lg text-white ">
+              <button onClick={() => navigate("/diagnose")} className="bg-[#00A0AA] px-6 py-3 rounded-lg text-white ">
         Get Your Result
               </button>
             </div>
@@ -116,7 +116,7 @@ const CheckUp = () => {
                 </div>
               </div>
 
-              <button className="bg-[#00A0AA] px-6 py-3 rounded-lg text-white ">
+              <button onClick={() => navigate("/diagnose")}  className="bg-[#00A0AA] px-6 py-3 rounded-lg text-white ">
         Get Your Result
               </button>
             </div>

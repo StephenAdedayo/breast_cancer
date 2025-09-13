@@ -21,6 +21,8 @@ import group1 from './Group 20.png'
 import image6 from './image 30.png'
 import image7 from './image 40.png'
 import icon from './footer.png'
+import health_aware from './health_aware.jpg'
+import health_resource from "./health_resource.jpg"
 
 
 export const assets = {
@@ -46,7 +48,9 @@ export const assets = {
     group1,
     image6,
     image7,
-    icon
+    icon,
+    health_aware,
+    health_resource
 
 
 }

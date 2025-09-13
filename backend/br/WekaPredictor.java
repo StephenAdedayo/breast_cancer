@@ -1,3 +1,5 @@
+package br;
+
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.classifiers.Classifier;

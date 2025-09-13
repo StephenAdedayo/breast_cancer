@@ -1,16 +1,11 @@
-import Diagnosis from '../components/Diagnosis'
+import Diagnosis from "../components/Diagnosis";
 
 const DiagnosisPage = () => {
-
-
-  
-
   return (
-    
     <>
-  <Diagnosis />
+      <Diagnosis />
     </>
-  )
-}
+  );
+};
 
-export default DiagnosisPage
+export default DiagnosisPage;

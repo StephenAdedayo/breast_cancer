@@ -18,8 +18,11 @@ export const predictProstateCancer = async (req, res) => {
     const modelPath = path.join(__dirname, "../ml/prostate_cancer.model");
     const wekaJarPath = path.join(__dirname, "../ml/weka.jar");
 
-    // Java command (just use `java` because it's on PATH in Docker)
-    const command = `java -cp "${path.dirname(modelPath)}:${wekaJarPath}" WekaPredictor "${modelPath}" "${inputArffPath}"`;
+    // Detect platform for correct classpath separator
+    const sep = process.platform === "win32" ? ";" : ":";
+
+    // Java command
+    const command = `java -cp ".${sep}${path.dirname(modelPath)}${sep}${wekaJarPath}" ml.WekaPredictor "${modelPath}" "${inputArffPath}"`;
 
     exec(command, (error, stdout, stderr) => {
       // Delete ARFF after prediction

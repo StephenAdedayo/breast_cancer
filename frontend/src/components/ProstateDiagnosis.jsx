@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { CanContext } from "../context/CanContext";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { assets } from "../assets/assets";
 
 const ProstateDiagnosis = () => {
   const [formData, setFormData] = useState({
@@ -36,6 +37,7 @@ const ProstateDiagnosis = () => {
     Genetic_Mutation: ""
   });
   const [prediction, setPrediction] = useState("");
+  const [loading, setLoading] = useState(false)
 
   const { backendUrl } = useContext(CanContext);
 
@@ -46,6 +48,7 @@ const ProstateDiagnosis = () => {
   }
 
   const onSubmitHandler = async (e) => {
+    setLoading(true)
   e.preventDefault();
   try {
     const { data } = await axios.post(
@@ -54,6 +57,7 @@ const ProstateDiagnosis = () => {
     );
 
     if (data.success) {
+      setLoading(false)
       setPrediction(data.prediction);
       toast.success(`Your test ${data.prediction} for prostate cancer`);
     } else {
@@ -98,6 +102,19 @@ const ProstateDiagnosis = () => {
     toast.error(error.message);
   }
 };
+
+if(loading){
+  return (
+    <div className="fixed top-0 left-0 w-full h-full z-50 grid place-items-center bg-[#EFFBFF]/70 backdrop-blur-md">
+      <div className="flex flex-col items-center gap-4">
+        <img
+          src={assets.health} // make sure to replace with your actual image path
+          alt="Loading..."
+          className="size-[40px]   animate-pulse"
+        />
+      </div>
+    </div>
+)}
 
   return (
     <div className="w-full my-28 flex lg:flex-row flex-col gap-20">

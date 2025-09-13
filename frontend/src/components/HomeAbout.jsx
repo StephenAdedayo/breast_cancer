@@ -3,9 +3,9 @@ import { assets } from "../assets/assets";
 
 const HomeAbout = () => {
   const health = [
-    { img: assets.image2, note: "Awareness & Education" },
+    { img: assets.health_aware, note: "Awareness & Education" },
     { img: assets.image3, note: "Early Diagnosis Support" },
-    { img: assets.image4, note: "Care & Resources" },
+    { img: assets.health_resource, note: "Care & Resources" },
   ];
 
   return (
@@ -28,7 +28,7 @@ const HomeAbout = () => {
           <div className="relative ">
             <div className="overflow-hidden rounded-lg">
               <img
-                className="rounded-md w-full transition-all duration-500 delay-75 hover:scale-110"
+                className="rounded-md w-full h-[200px] object-cover transition-all duration-500 delay-75 hover:scale-110"
                 src={heal.img}
                 alt=""
               />

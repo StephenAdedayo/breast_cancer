@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { assets } from '../assets/assets'
 import { CanContext } from '../context/CanContext'
+import { NavLink } from 'react-router-dom'
 
 const Footer = () => {
 
@@ -18,7 +19,6 @@ const Footer = () => {
 
               <div>
                 <button onClick={() => navigate('/diagnose')} className='border border-white px-6 py-3 rounded-lg text-white'>Diagnose Yourself</button>
-                {/* <button className='border border-white px-6 py-3 rounded-lg'></button> */}
               </div>
       </div>
 
@@ -41,8 +41,7 @@ const Footer = () => {
         <div className='space-y-2 list-none'>
           <li className='font-medium lg:text-[18px] text-[15px] text-white'>Breast Cancer Prediction</li>
           <li className='font-medium lg:text-[18px] text-[15px] text-white'>Prostate Cancer Prediction</li>
-          {/* <li className='font-medium text-[18px] text-white'>Cardiac Health</li> */}
-          {/* <li className='font-medium text-[18px] text-white'>MRI Checkup</li> */}
+
         </div>
       </div>
 
@@ -50,10 +49,10 @@ const Footer = () => {
         <p className='lg:text-[18px] text-[15px] font-medium uppercase text-white'>Quick links</p>
 
         <div className='space-y-2 list-none'>
-          <li className='font-medium lg:text-[18px] text-[15px] text-white'>Home</li>
-          <li className='font-medium lg:text-[18px] text-[15px] text-white'>Services</li>
-          <li className='font-medium lg:text-[18px] text-[15px] text-white'>Healthtips</li>
-          {/* <li className='font-medium text-[18px] text-white'>Pharmacy</li> */}
+          <NavLink to={'/'}><li className='font-medium lg:text-[18px] text-[15px] text-white'>Home</li></NavLink>
+          <NavLink to={'/services'}><li className='font-medium lg:text-[18px] text-[15px] text-white'>Services</li></NavLink>
+          <NavLink to={"/healthtips"}><li className='font-medium lg:text-[18px] text-[15px] text-white'>Healthtips</li></NavLink>
+
         </div>
       </div>
 </div>

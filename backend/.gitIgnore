@@ -1,4 +1,3 @@
 node_modules
 
-/br/WekaPredictor.class
-/ml/WekaPredictor.class
+*.class

@@ -49,7 +49,7 @@ const ProstateDiagnosis = () => {
     if (data.success) {
       setLoading(false)
       setPrediction(data.prediction);
-      toast.success(`Your test ${data.prediction} for prostate cancer`);
+      toast.success(`You test ${data.prediction} for prostate cancer`);
     } else {
       console.log(data.message);
       toast.error(data.message);

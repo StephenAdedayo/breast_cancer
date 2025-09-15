@@ -52,7 +52,7 @@ const BreastDiagnosis = () => {
     if (data.success) {
       setLoading(false)
       setPrediction(data.prediction);
-      toast.success(`Your test ${data.prediction} for breast cancer`);
+      toast.success(`You test ${data.prediction} for breast cancer`);
     } else {
       console.log(data.message);
       toast.error(data.message);
@@ -152,7 +152,8 @@ if(loading){
 
 {/* Age at Menopause */}
 <div className="flex flex-col gap-2">
-  <label className="text-[#979797]">At what age did you reach menopause?</label>
+  <label className="text-[#979797]">At what age did you reach menopause (if you have already experienced it)?
+</label>
   <input
     type="number"
     name="Age_Menopause"
@@ -309,7 +310,7 @@ if(loading){
 
 {/* Ultrasound Result */}
 <div className="flex flex-col gap-2">
-  <label className="text-[#979797]">Was anything abnormal detected in your ultrasound?</label>
+  <label className="text-[#979797]">Have you ever had an ultrasound scan? If yes, did it show anything unusual?</label>
   <select
     value={formData.Ultrasound_Result}
     onChange={handleChange}

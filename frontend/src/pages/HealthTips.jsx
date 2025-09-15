@@ -34,7 +34,7 @@ const HealthTips = () => {
               <div
                 key={index}
                 onClick={() => isOpen(tips._id)}
-                className=" h-full   bg-white relative w-full rounded shadow-md"
+                className=" h-full   bg-white relative w-full rounded-lg shadow"
               >
                 <div className="space-y-4 p-10">
                   <p className="border border-[#2F73F2] p-1 rounded w-fit text-[#2F73F2]">
@@ -42,7 +42,7 @@ const HealthTips = () => {
                   </p>
                   <p className="font-semibold text-[18px]">{tips.title}</p>
                   <p className="text-gray-500 text-[15px]">
-                    {tips.content.slice(0, 200)}.....
+                    {tips.content.slice(0, 100)}.....
                   </p>
 
                   <div className="flex gap-5 ">

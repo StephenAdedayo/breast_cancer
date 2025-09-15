@@ -47,7 +47,7 @@ const Navbar = () => {
 
       <div className="lg:flex gap-3 items-center hidden  ">
         <img src={assets.vector4} alt="" />
-        <p className="font-bold text-[16px]">1005-346-272</p>
+        <p className="font-bold text-[16px]">08100323629</p>
       </div>
 
       <div onClick={() => setIsMenuOpen(!isMenuOpen)} className="lg:hidden block">
@@ -77,7 +77,8 @@ const Navbar = () => {
 
             <div className="flex gap-3 items-center   px-5">
         <img src={assets.vector4} alt="" />
-        <p className="font-bold text-white text-[16px]">1005-346-272</p>
+        <p className="font-bold text-white text-[16px]">08100323629
+</p>
       </div>
 
     </nav>
